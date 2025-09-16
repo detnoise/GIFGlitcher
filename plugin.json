@@ -1,0 +1,28 @@
+{
+  "slug": "GIFGlitcher",
+  "name": "GIFGlitcher",
+  "version": "2.1.0",
+  "license": "proprietary",
+  "brand": "DETNOISE",
+  "author": "DETNOISE",
+  "authorEmail": "",
+  "authorUrl": "",
+  "pluginUrl": "",
+  "manualUrl": "",
+  "sourceUrl": "",
+  "donateUrl": "",
+  "changelogUrl": "",
+  "modules": [
+    {
+      "slug": "GIFGlitcher",
+      "name": "GIFGlitcher",
+      "description": "GIF processing module with CV inputs.",
+      "tags": [
+        "GIF",
+        "processing",
+        "CV",
+        "glitch"
+      ]
+    }
+  ]
+}
