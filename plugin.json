@@ -17,7 +17,7 @@
       "slug": "GIFGlitcher",
       "name": "GIFGlitcher",
       "description": "GIF processing module with CV inputs.",
-      "tags": ["Visual", "Display"]
+      "tags": ["Visual"]
     }
   ]
 }
