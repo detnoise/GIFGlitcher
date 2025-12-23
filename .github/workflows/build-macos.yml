@@ -20,8 +20,12 @@ jobs:
 
       - name: Build plugin
         run: |
+          export CPATH=/opt/homebrew/include
+          export LIBRARY_PATH=/opt/homebrew/lib
+          export PKG_CONFIG_PATH=/opt/homebrew/lib/pkgconfig
           make clean || true
           make
+
 
       - name: Package plugin
         run: |
