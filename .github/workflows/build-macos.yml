@@ -1,0 +1,36 @@
+name: Build macOS release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          brew update
+          brew install pkg-config giflib
+
+      - name: Build plugin
+        run: |
+          make clean || true
+          make
+
+      - name: Package plugin
+        run: |
+          make dist
+
+      - name: Create GitHub Release and upload artifact
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            *.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
