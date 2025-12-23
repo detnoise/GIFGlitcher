@@ -28,22 +28,45 @@ make install
 
 - giflib (required for GIF support)
 
-### macOS Installation
+## Installation (macOS)
+
+### Recommended: Use the precompiled plugin
+
+You do **not** need to build GIFGlitcher yourself on macOS.
+
+1. Go to the **Releases** section of this repository.
+2. Download the macOS `.zip` file.
+3. Unzip it into your VCV Rack plugins folder
+4. Restart VCV Rack.
+
+The plugin should appear automatically in the module browser.
+
+---
+
+## Building from source (developers only)
+
+Only required if you want to modify or develop the plugin.
+
+### Requirements
+
+- VCV Rack SDK
+- `giflib` (for GIF support)
+- `pkg-config` (recommended)
+
+### macOS
 
 ```sh
-brew install giflib
-```
-
-If you see `gif_lib.h file not found`, make sure you include the path to giflib headers. Example:
-
-```sh
-export CFLAGS="-I/opt/homebrew/include"
-export LDFLAGS="-L/opt/homebrew/lib"
+brew install pkg-config giflib
 make
+make dist
 ```
 
+If you see errors like gif_lib.h file not found, ensure Homebrew paths are available:
 
-This will build the plugin and install it into your VCV Rack plugins directory.
+export CPATH=/opt/homebrew/include
+export LIBRARY_PATH=/opt/homebrew/lib
+make
+
 
 ## License
 
