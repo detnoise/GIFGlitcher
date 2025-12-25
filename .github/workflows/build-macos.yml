@@ -1,9 +1,11 @@
-name: Build macOS release
+name: Build macOS (VCV Rack)
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - vendor/giflib
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   build-macos:
@@ -13,28 +15,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: Download VCV Rack SDK
         run: |
-          brew update
-          brew install pkg-config giflib
+          curl -L https://vcvrack.com/downloads/Rack-SDK-2.5.2-mac-x64.zip -o rack-sdk.zip
+          unzip rack-sdk.zip
+          mv Rack-SDK-* Rack-SDK
 
       - name: Build plugin
+        env:
+          RACK_DIR: ${{ github.workspace }}/Rack-SDK
         run: |
-          export CPATH=/opt/homebrew/include
-          export LIBRARY_PATH=/opt/homebrew/lib
-          export PKG_CONFIG_PATH=/opt/homebrew/lib/pkgconfig
-          make clean || true
           make
-
-
-      - name: Package plugin
-        run: |
           make dist
 
-      - name: Create GitHub Release and upload artifact
-        uses: softprops/action-gh-release@v1
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
         with:
-          files: |
-            *.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: GIFGlitcher-macOS
+          path: |
+            dist/*.zip
+
