@@ -15,7 +15,7 @@ VENDOR_SRCS := $(wildcard $(VENDOR_DIR)/*.c)
 # FLAGS are shared between C and C++
 # Ensure vendor include is present in the main FLAGS so the Rack SDK's compile step
 # will get the vendor include directory.
-FLAGS += -I$(RACK_DIR) -I$(VENDOR_DIR) -g -Wall -Wextra -fopenmp
+FLAGS += -I$(RACK_DIR) -I$(VENDOR_DIR) -g -Wall -Wextra
 
 # C flags (giflib is C99)
 CFLAGS += -std=c99
@@ -27,7 +27,7 @@ CXXFLAGS += -I$(RACK_DIR)/dep/include -I$(VENDOR_DIR) -std=c++17
 CPPFLAGS += -I$(VENDOR_DIR)
 
 # Link flags (NO system giflib)
-LDFLAGS += -fopenmp
+LDFLAGS +=
 
 # --------------------------------------------------------------------
 # Sources
