@@ -718,7 +718,6 @@ void GIFGlitcher::processImage() {
         for (int y = 0; y < imageHeight; y += chunkSize) {
             int endY = std::min(y + chunkSize, imageHeight);
 
-            #pragma omp parallel for if(imageWidth > 512)
             for (int cy = y; cy < endY; ++cy) {
                 std::vector<PixelInfo> pixelBuffer(imageWidth);
 
